@@ -1,0 +1,31 @@
+{
+  "name": "week18-newsscrape",
+  "version": "1.0.0",
+  "description": "News Web Scraping With MongoDB",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidLapadula/mongoNewsSrape.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidLapadula/mongoNewsSrape/issues"
+  },
+  "homepage": "https://github.com/DavidLapadula/mongoNewsSrape#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cheerio": "^1.0.0-rc.2",
+    "dotenv": "^6.0.0",
+    "express": "^4.15.4",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^2.3.9",
+    "mongoose": "^4.11.7",
+    "morgan": "^1.8.2",
+    "request": "^2.81.0"
+  }
+}
