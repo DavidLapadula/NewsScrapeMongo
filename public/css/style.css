@@ -37,8 +37,12 @@ a {
     color: white; 
 }
 
+.nav-link {
+    transition: all .2s ease-in-out;
+}
+
 .nav-link:hover {
-    border: 2px double white;  
+    transform: scale(1.06);
 }
 
 #scrape-btn {
@@ -48,7 +52,7 @@ a {
 }
 
 #scrape-btn:hover {
-    transform: scale(1.2)
+    transform: scale(1.2);
 }
 
 .img-link {
@@ -62,7 +66,7 @@ a {
 /* Style for the handlebars partial cars used to display articles */
 .profile-card{
     margin-top:20px;
-    min-width: 300px; 
+    min-width: 250px; 
     max-width: 400px; 
 }
 

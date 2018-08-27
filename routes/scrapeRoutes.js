@@ -59,23 +59,26 @@ module.exports = function (router, db) {
                         // If the article was not found, and is unique, create one
                         if (dbArticle === null) {
                             db.Article.create(content)
+                            console.log(dbArticle)
                                 .then(function (dbArticle) {
                                     // Print the article to the console if it was created successfully
                                     console.log(dbArticle);
                                 })
                                 .catch(function (err) {
                                     // If an error occurs, print it to the console
-                                    console.log(err.message, 'message');
+                                    console.log(err.message, 'message 1');
                                 });
                         }
                     })
                     .catch(function (err) {
-                        res.sendStatus('404');
+                        console.log(err.message, 'message 2');
                     });
+                    console.log('waiting'); 
             });
+            // send ok status if none of the catch blocks have been caught
+            console.log('status')
+            res.sendStatus('200'); 
         });
-        // send ok status if none of the catch blocks have been caught
-        res.sendStatus('200');
     });
 
     // put route to updated the article and turn the 'saved' boolean to true

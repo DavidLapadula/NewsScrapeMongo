@@ -9,16 +9,17 @@ $(document).ready(function () {
             type: 'GET',
             url: '/scrapedNews',
         }).done(function (res) {
-            if (res === 'OK') {
-                window.location.href = "/";
-            } else {
-                alert('Please try again');
-            }
+            console.log(res); 
+            // if (res === 'OK') {
+            //     window.location.href = "/"; 
+            // } else {
+            //     alert('Please try again');
+            // }
         });
 
     });
 
-    // Send Request to server to save the article
+    // Send Request to server to save the article       
     $('.save-art-btn').on('click', function () {
         event.preventDefault();
         let artId = $(this).parent().parent().attr('data-artId');
@@ -27,6 +28,7 @@ $(document).ready(function () {
             type: 'PUT',
             url: `/saved/${artId}`,
         }).done(function (res) {
+
             if (res === 'OK') {
                 window.location.href = "/";
             } else {
