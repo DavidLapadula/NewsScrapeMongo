@@ -8,6 +8,8 @@ let ArticleSchema = new Schema ({
     // title  links must be a string
     title: {
       type: String,
+      unique: true, 
+      dropDups: true, 
       required: true
     },
     link: {

@@ -1,6 +1,7 @@
 //scraping tools
 let request = require("request");
 let cheerio = require("cheerio");
+let Article = require("../models/Article.js");
 
 module.exports = function (router, db) {
 
@@ -33,53 +34,42 @@ module.exports = function (router, db) {
 
     // This route gets hit when the user asks to 'scrape'
     router.get('/scrapedNews', function (req, res) {
-
         // store the link to the page that will be scraped
         let link = 'https://www.cp24.com/news';
-
         request(link, function (error, response, html) {
-
             // pass the HTML to cheerio
             let $ = cheerio.load(html);
-
+            let entries = []; 
             $("li.dc").each(function (i, element) {
-
                 // empty object to store scraped content
                 let content = {};
-
                 // add value to the object
                 content.link = $(element).children('div.element').children('div.teaser-image-wrapper').children('div.teaserImage').children('a').attr('href');
                 content.imgLink = $(element).children('div.element').children('div.teaser-image-wrapper').children('div.teaserImage').children('a').children('img').attr('src');
                 content.title = $(element).children('div.element').children('div.teaserText').children('div.bn-headline').children('h2.teaserTitle').children('a').text();
                 content.desc = $(element).children('div.element').children('div.teaserText').children('div.lead-left').children('p').text();
-
                 // First check if there is an article with the name of one that was scraped to prevent duplicates
-                db.Article.findOne({ 'title': content.title })
-                    .then(function (dbArticle) {
-                        // If the article was not found, and is unique, create one
-                        if (dbArticle === null) {
-                            db.Article.create(content)
-                            console.log(dbArticle)
-                                .then(function (dbArticle) {
-                                    // Print the article to the console if it was created successfully
-                                    console.log(dbArticle);
-                                })
-                                .catch(function (err) {
-                                    // If an error occurs, print it to the console
-                                    console.log(err.message, 'message 1');
-                                });
-                        }
-                    })
-                    .catch(function (err) {
-                        console.log(err.message, 'message 2');
-                    });
-                    console.log('waiting'); 
+                if (content.link && content.imgLink && content.title && content.desc) {
+                    entries.push(new Article(content));  
+                }
             });
-            // send ok status if none of the catch blocks have been caught
-            console.log('status')
-            res.sendStatus('200'); 
+            for (let i = 0; i < entries.length; i++) {
+                entries[i].save(function(err, data) {
+                    if (err) {
+                        console.log(err);
+                    } 
+                    else {
+                        console.log(data);
+                    }
+                });
+                // retrieves articles from db only after all entries have been made
+                if (i === (entries.length - 1)) {
+                    res.redirect("/");
+                }
+            }
         });
-    });
+
+    }); 
 
     // put route to updated the article and turn the 'saved' boolean to true
     router.put("/saved/:id", function (req, res) {

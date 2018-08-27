@@ -2,22 +2,6 @@ $(document).ready(function () {
 
     // -------------------- Buttons for not Saved page ----------------------//
 
-    // Scrape any new articles, if the request is ok, reload the page
-    $('#scrape-btn').on('click', function () {
-        event.preventDefault();
-        $.ajax({
-            type: 'GET',
-            url: '/scrapedNews',
-        }).done(function (res) {
-            console.log(res); 
-            // if (res === 'OK') {
-            //     window.location.href = "/"; 
-            // } else {
-            //     alert('Please try again');
-            // }
-        });
-
-    });
 
     // Send Request to server to save the article       
     $('.save-art-btn').on('click', function () {
@@ -40,6 +24,14 @@ $(document).ready(function () {
 
     // -------------------- Buttons for Saved page ----------------------//
 
+
+    console.log($('.saved-div').children().length )
+    // display a message if the saved page has no saved articles
+    if ($('.saved-div').children().length === 0) {
+        $('.none-stored').show();
+    } else {
+        $('.none-stored').hide();
+    }
 
     // Removed a saved article from the database
     $('.remove-saved').on('click', function () {
@@ -108,7 +100,7 @@ $(document).ready(function () {
             url: `/notes/delete/${noteId}`
         }).done(function (res) {
             if (res === 'Accepted') {
-                window.location.href = '/savedArticles'; 
+                window.location.href = '/savedArticles';
             } else {
                 alert('Could not delete, please try again')
             }
