@@ -1,6 +1,3 @@
-:root {
-    --main-bg-color: coral;
-}
 
 body {
     background-image: url("../images/torontobr.jpg");
@@ -10,6 +7,7 @@ body {
     background-size: cover;
 } 
 
+/* Google Fonts  and general colors*/
 .heading-font {
     font-family: 'PT Serif', serif;
 }
@@ -17,8 +15,51 @@ body {
 .content-font {
     font-family: 'Lato', sans-serif;
 }
+ 
+.grey-color {
+    color: #7f8e9e
+}
 
+.grey-br {
+    background-color:   #7f8e9e; 
+}
 
+.blue-color {
+    color : #476c8a
+} 
+
+.blue-br {
+    background-color : #476c8a; 
+}
+
+a {
+    text-decoration : none; 
+    color: white; 
+}
+
+.nav-link:hover {
+    border: 2px double white;  
+}
+
+#scrape-btn {
+    background-color: white; 
+    color : #476c8a; 
+    transition: all .2s ease-in-out;
+}
+
+#scrape-btn:hover {
+    transform: scale(1.2)
+}
+
+.img-link {
+    transition: all .2s ease-in-out;
+}
+
+.img-link:hover {
+    transform: scale(1.1); 
+}
+
+/* Style for the handlebars partial cars used to display articles */
 .profile-card{
     margin-top:20px;
     min-width: 300px; 
@@ -58,10 +99,11 @@ body {
     background-color: grey;
 }
 
+/* Style for the Comment box ussed on the notes for saved articles */
+
 .comment-box {
     margin-top: 30px !important;
 }
-
 
 .comment-box .media-body p {
     border: 1px solid #ddd;

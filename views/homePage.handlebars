@@ -1,29 +1,25 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark heading-font">
-    <a href="#" class="navbar-brand h2">Toronto News Scrape</a>
+<nav class="navbar navbar-expand-lg navbar-dark blue-br heading-font fixed-top">
+    <h2 class="pt-2 pt-2 text-white">Toronto News</h2>
     <button class="navbar-toggler" data-target="#navigation" data-control="navigation" data-toggle="collapse">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navigation">
         <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a href="/" class="nav-link">Home</a>
+            <li class="nav-item active h4 mr-2">
+                <a href="savedArticles" class="nav-link">Saved Articles</a>
             </li>
             <li class="nav-item">
-                <a href="savedArticles" class="nav-link">Saved</a>
-            </li>
-            <li class="nav-item">
-                <button id="scrape-btn" type="button" class="btn btn-outline-success">Scrape</button>
+                <button id="scrape-btn" type="button" class="btn btn-lg h4">Scrape</button>
             </li>
         </ul>
     </div>
 </nav>
 
-<div class="row justify-content-center">
+{{!-- Partial used for each article --}}
+<div class="row justify-content-center mt-5">
     <div class="col-sm-12 col-md-10">
         <div class="row justify-content-center">
             {{> scraped}}
         </div>
     </div>
 </div>
-
-<script src="app.js"></script>

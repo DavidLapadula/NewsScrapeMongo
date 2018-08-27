@@ -1,7 +1,9 @@
 {{#each saved}}
-<div class="col-lg-4 col-md-6 col-sm-12 mt-4 d-flex justify-content-center">
+
+{{!-- Make a card for each saved article --}}
+<div class="col-lg-4 col-md-6 col-sm-12 mt-5 d-flex justify-content-center">
     <div class="card profile-card" data-savedId="{{this.id}}">
-        <a href="{{this.link}}" target="_blank">
+        <a class="img-link" href="{{this.link}}" target="_blank">
             <div class="card-img-block">
                 <img class="card-img-top" src="{{this.imgLink}}" alt="Card image cap">
             </div>
@@ -19,7 +21,7 @@
 
 
 
-<!-- Modal -->
+{{!-- Modal for the notes saved to each article --}}
 <div class="modal fade" id="{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -39,7 +41,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="fa fa-comment text-secondary"></i></div>
                                     </div>
-                                    <textarea class="form-control" placeholder="add your note here" required></textarea>
+                                    <textarea class="form-control comment-text" placeholder="add your note here" required></textarea>
                                 </div>
                             </div>
 

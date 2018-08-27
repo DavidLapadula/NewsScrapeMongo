@@ -9,20 +9,14 @@ require("dotenv").config();
 //models
 let db = require("./models");
 
-
-// var db = require("./models");
-
-let methodOverride = require('method-override');
-
 // allow mongoose to use promises
-
-// mongoose.Promise = Promise;
+mongoose.Promise = Promise;
 
 //express initialize and express router
 let app = express();
 let router = express.Router();
 
-// Use morgan and body parser with our app
+// Set up all functionality for app
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,8 +30,6 @@ app.use(router);
 // pass in router object to the routes file
 require('./routes/scrapeRoutes.js')(router, db);
 
-
-
 // Set up database with mongoose
 if (process.env.MONGODB_URI) {
   //THIS EXECUTES IF THIS IS IN HEROKU
@@ -46,21 +38,11 @@ if (process.env.MONGODB_URI) {
   mongoose.connect("mongodb://localhost/mongoNewsScrape")
 }
 
-
 // Set Handlebars.
 let exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-
-// Override with POST having ?_method=DELETE
-app.use(methodOverride("_method"));
-
-// Once logged in to the db through mongoose, log a success message
-// db.once("open", function() {
-//   console.log("Mongoose connection successful.");
-// });
-
 
 
 // Listen on port 3000

@@ -1,8 +1,8 @@
-<!--Profile Card 5-->
+{{!-- Card for each article scraped from the web --}}
 {{#each Article}}
-<div class=" col-lg-4 col-md-6 col-sm-12 mt-4 d-flex justify-content-center">
+<div class=" col-lg-4 col-md-6 col-sm-12 mt-5 d-flex justify-content-center">
     <div class="card profile-card" data-artId="{{this.id}}">
-        <a href="{{this.link}}" target="_blank">
+        <a class="img-link" href="{{this.link}}" target="_blank">
             <div class="card-img-block p-2">
                 <img class="card-img-top" src="{{this.imgLink}}" alt="Card image cap">
             </div>
