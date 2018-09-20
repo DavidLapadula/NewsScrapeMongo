@@ -7,17 +7,27 @@ module.exports = function (router, db) {
 
     // When hitting the home route, bring up all unsaved articles and renders the hompeage
     router.get("/", function (req, res) {
-        db.Article.find({
-            saved: false
-        }, function (err, doc) {
+        // db.Article.find({
+        //     saved: false
+        // }).sort('-date', function (err, doc) {
+        //     if (err) {
+        //         res.send(err);
+        //     }
+        //     else {
+        //         res.render("homePage", { Article: doc });
+        //     }
+        // });
+        db.Article.find({saved: false}).sort('-date').exec(function (err, doc) {
             if (err) {
                 res.send(err);
             }
             else {
                 res.render("homePage", { Article: doc });
             }
-        });
+    
+        })
     })
+
 
     // When hitting the saved page, all saved articles are retrieved and the corresponding page renders
     router.get("/savedArticles", function (req, res) {
@@ -48,6 +58,7 @@ module.exports = function (router, db) {
                 content.imgLink = $(element).children('div.element').children('div.teaser-image-wrapper').children('div.teaserImage').children('a').children('img').attr('src');
                 content.title = $(element).children('div.element').children('div.teaserText').children('div.bn-headline').children('h2.teaserTitle').children('a').text();
                 content.desc = $(element).children('div.element').children('div.teaserText').children('div.lead-left').children('p').text();
+                content.date = Date.now()
                 // First check if there is an article with the name of one that was scraped to prevent duplicates
                 if (content.link && content.imgLink && content.title && content.desc) {
                     entries.push(new Article(content));  

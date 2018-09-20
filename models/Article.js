@@ -28,6 +28,9 @@ let ArticleSchema = new Schema ({
       type: Boolean,
       default: false
     },
+    date: {
+     type: String
+    },
     // Save the ObjectId. ref is for the comment model for each article
     comments: [{
       type: Schema.Types.ObjectId,
