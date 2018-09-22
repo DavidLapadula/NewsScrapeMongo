@@ -28,6 +28,25 @@ module.exports = function (router, db) {
         })
     })
 
+    router.get("/test", function (req, res) {
+        bla = '5ba3a4ffe2a93752489f6ff5'
+        db.Article.find({
+            _id: bla
+        },  function (err, doc) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+               return res.send({
+                    document: doc,
+                    success: true, 
+                    message: 'Good job'
+                });
+            }
+        });
+   
+    })
+
 
     // When hitting the saved page, all saved articles are retrieved and the corresponding page renders
     router.get("/savedArticles", function (req, res) {
