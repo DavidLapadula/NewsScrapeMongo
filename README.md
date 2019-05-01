@@ -19,8 +19,8 @@ This project was desinged within the MVC paradigm of application architecture. D
 <b>Built with</b>
 - [Node.js](https://nodejs.org/en/)
 - [MongoDB](https://www.mongodb.com/)
-- [Cheerio NPM](https://www.npmjs.com/package/cheerio)
-- [Mongoose NPM](https://www.npmjs.com/package/mongoose)
+- [Cheerio](https://www.npmjs.com/package/cheerio)
+- [Mongoose](https://www.npmjs.com/package/mongoose)
 - [Electron](https://electron.atom.io)
 
 ## Features
